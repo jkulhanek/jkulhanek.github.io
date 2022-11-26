@@ -53,7 +53,7 @@ gulp.task('pages', gulp.series('data.build.json', function render_pages() {
 gulp.task('build-cv', gulp.series('data.build.json', function cv() {
   return gulp.src('./cv/kulhanek-cv.tex')
     .pipe(formatLatex('./cv'))
-    .pipe(gulp.dest('./web/public/assets'));
+    .pipe(gulp.dest('./web/public'));
 }));
 
 
