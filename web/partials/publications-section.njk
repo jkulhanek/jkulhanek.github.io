@@ -1,0 +1,105 @@
+{% macro citeCount(count) %}
+{% if count %}
+<span class="publication-citecount">
+  cited by: {{count}}
+</span>
+{% endif %}
+{% endmacro %}
+<section id="publications" class="c2">
+  <h2>Publications</h2>
+    <div class="section-item image-item-container">
+      <div class="responsive-image-container">
+        <div class="responsive-image">
+          {{image("images/project-symformer", lazy=true)}}
+        </div>
+      </div>
+      <div class="text">
+        <span class="title"><a href="https://vastlik.github.io/symformer" class="text-link">SymFormer: End-to-end symbolic regression using transformer-based architecture</a></span>
+        <span class="publication-authors">Martin Vastl and Jonáš Kulhánek and Jiří Kubalík and Erik Derner and Robert Babuška</span>
+        <span class="publication-venue"><i>posted on arxiv</i></span>
+        {{citeCount(citeCounts["2022symformer"])}}
+        <ul class="links">
+          <li><a href="https://arxiv.org/pdf/2205.15764" rel="nofollow">paper</a></li>
+          <li><a href="https://vastlik.github.io/symformer">web</a></li>
+          <li><a href="resources/symformer2022.bib" data-bib="{{ "resources/symformer2022.bib" | load_bib | safe }}" rel="nofollow">bib</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-item image-item-container">
+      <div class="responsive-image-container">
+        <div class="responsive-image">
+          {{image("images/project-viewformer", lazy=true)}}
+        </div>
+      </div>
+      <div class="text">
+        <span class="title"><a href="https://jkulhanek.github.io/viewformer" class="text-link">ViewFormer: NeRF-free Neural Rendering from Few Images Using Transformers</a></span>
+        <span class="publication-authors">Jonáš Kulhánek and Erik Derner and Torsten Sattler and Robert Babuška</span>
+        <span class="publication-venue"><i>accepted to ECCV 2022</i></span>
+        {{citeCount(citeCounts["2022viewformer"])}}
+        <ul class="links">
+          <li><a href="https://arxiv.org/pdf/2203.10157" rel="nofollow">paper</a></li>
+          <li><a href="https://jkulhanek.github.io/viewformer">web</a></li>
+          <li><a href="resources/viewformer2022.bib" data-bib="{{ "resources/viewformer2022.bib" | load_bib | safe }}" rel="nofollow">bib</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-item image-item-container">
+      <div class="responsive-image-container">
+        <div class="responsive-image">
+          {{image("images/project-augpt", lazy=true)}}
+        </div>
+      </div>
+      <div class="text">
+        <span class="title">AuGPT: Auxiliary Tasks and Data Augmentation for End-To-End Dialogue with Pre-Trained Language Models</span>
+        <span class="publication-authors">Jonáš Kulhánek and Vojtěch Hudeček and Tomáš Nekvinda and Ondřej Dušek</span>
+        <span class="publication-venue"><i>published in proceedings of NLP4ConvAI, EMNLP 2021</i></span>
+        {{citeCount(citeCounts["2021augpt"])}}
+        <ul class="links">
+          <li><a href="https://arxiv.org/pdf/2102.05126" rel="nofollow">paper</a></li>
+          <li><a href="resources/augpt2021.bib" data-bib="{{ "resources/augpt2021.bib" | load_bib | safe }}" rel="nofollow">bib</a></li>
+          <li><a href="https://github.com/ufal/augpt">code</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-item image-item-container">
+      <div class="responsive-image-container">
+        <div class="responsive-image">
+          {{image("images/project-rw-nav", lazy=true)}}
+        </div>
+      </div>
+      <div class="text">
+        <span class="title"><a class="text-link" href="https://jkulhanek.github.io/robot-visual-navigation">Visual Navigation in Real-World Indoor Environments Using End-to-End Deep Reinforcement Learning</a></span>
+        <span class="publication-authors">Jonáš Kulhánek and Erik Derner and Robert Babuška</span>
+        <span class="publication-venue"><i>published in RA-L 2021</i></span>
+        {{citeCount(citeCounts["2021visual"])}}
+        <ul class="links">
+          <li><a href="https://arxiv.org/pdf/2010.10903" rel="nofollow">paper</a></li>
+          <li><a href="https://jkulhanek.github.io/robot-visual-navigation">web</a></li>
+          <li><a href="resources/rwnav2021.bib" data-bib="{{ "resources/rwnav2021.bib" | load_bib | safe }}" rel="nofollow">bib</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-item image-item-container">
+      <div class="responsive-image-container">
+        <div class="responsive-image">
+          {{image("images/project-a2cat-vn", lazy=true)}}
+        </div>
+      </div>
+      <div class="text">
+        <span class="title"><a class="text-link" href="https://jkulhanek.github.io/a2cat-vn">Vision-based Navigation Using Deep Reinforcement Learning</a></span>
+        <span class="publication-authors">Jonáš Kulhánek and Erik Derner and Tim de Bruin and Robert Babuška</span>
+        <span class="publication-venue"><i>2019 European Conference on Mobile Robots (ECMR), 2019, p.1-8</i></span>
+        {{citeCount(citeCounts["2019vision"])}}
+        <ul class="links">
+          <li><a href="https://arxiv.org/pdf/1908.03627" rel="nofollow">paper</a></li>
+          <li><a href="https://jkulhanek.github.io/a2cat-vn">web</a></li>
+          <li><a href="resources/ecmr2019.bib" data-bib="{{ "resources/ecmf2019.bib" | load_bib | safe }}" rel="nofollow">bib</a></li>
+        </ul>
+      </div>
+    </div>
+
+</section>
