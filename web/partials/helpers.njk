@@ -1,0 +1,20 @@
+{% macro publication_link(link) %}
+<div class="button">
+  <a href="{{link.href | route(is_default_locale) | safe}}" rel="nofollow" data-bib="{{ link | load_bib | safe }}">{{(link.rel or link.type) | upper }} <i class="{{link | publication_icon }}"></i></a></div>
+{% endmacro %}
+{% macro image(src, alt='', lazy=false, class='') %}
+{% if lazy %}
+<picture>
+  <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
+  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpb" | safe }} 2x" type="image/jpeg" />
+  <img alt="${alt}" src="{{ src + ".jpg"}}" loading="lazy" class="lazy-img {{class}}"/>
+</picture>
+{% else %}
+<picture>
+  <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
+  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpb" | safe }} 2x" type="image/jpeg" />
+  <img alt="${alt}" src="{{ src + ".jpg"}}" class="{{class}}"/>
+</picture>
+{% endif %}
+{% endmacro %}
+

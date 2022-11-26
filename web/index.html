@@ -1,0 +1,121 @@
+{% from "partials/helpers.njk" import image %}
+{% set homepage = true %}
+{% set current_page = "./" %}
+<!DOCTYPE html>
+<html lang="en" moznomarginboxes mozdisallowselectionprint>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Jonas Kulhanek - Personal Website">
+    <meta name="keywords" content="researcher, deep learning, phd, neural rendering, cv, portfolio, personal resume">
+    <meta name="author" content="Jonas Kulhanek">
+    <meta http-equiv="content-language" content="en-GB">
+    <link rel="alternate" href="./" hreflang="x-default" />
+    <title>Jonas Kulhanek - Personal Website</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ga_tracking_code | safe }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ga_tracking_code | safe }}');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/profile.webp">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/print.css" media="print" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+
+    <header>
+      <div class="profile-name-container">
+        <div class="profile-picture">
+          {{ image("images/profile") }}
+        </div>
+        <div class="header-main">
+          <h1><span class="first">Jonáš</span> Kulhánek</h1>
+          <div class="print sub-header-main">
+            <a href="https://jkulhanek.github.io/">https://jkulhanek.github.io</a><br>
+            <a href="mailto:jonas.kulhanek@live.com">jonas.kulhanek@live.com</a>&nbsp;&#124;&nbsp;+420 728 042 412
+          </div>
+          <div class="subheader noprint">PhD student</div>
+          <ul class="links noprint">
+            {#<li><a href="kulhanek-cv.pdf">CV</a></li>#}
+            <li><a href="mailto:jonas.kulhanek@live.com">Email</a></li>
+            <li><a href="https://github.com/jkulhanek">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/jonaskulhanek">LinkedIn</a></li>
+            <li><a href="{{ google_scholar_url | safe }}">Google Scholar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bio noprint">
+        I am a PhD student in the Computer Science doctoral study program at the Department of Cybernetics, Faculty of Electrical Engineering (FEE), Czech Technical University (CTU). I am currently researching the topic of <i>neural scene representation and generalizable novel view synthesis</i> under the supervision of <i>Torsten Sattler</i>. I received my BSc degree from FEE, CTU, and my MSc degree from the Faculty of Mathematics and Physics, Charles University, both in computer science. Before starting my doctoral studies, I was a junior researcher at the Czech Institute of Informatics, Robotics and Cybernetics (CIIRC), CTU, where I focused on visual navigation using deep reinforcement learning and neural scene representation and rendering.
+      </div>
+    </header>
+    <div class="main">
+      <section id="news" class="c1">
+        <h2>News</h2>
+        <div class="container">
+          <div class="news-item">
+            <span class="date">11/2022</span>
+            <span class="title">
+              Looking for a MSc and BSc students. Please contact me if you want discuss thesis topics.
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">07/2022</span>
+            <span class="title">
+              I am very exited to start my internship at <a href="https://about.facebook.com/realitylabs/">Meta Reality Labs</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">07/2022</span>
+            <span class="title">
+              <a href="https://arxiv.org/pdf/2203.10157.pdf">Our ViewFormer paper</a> got accepted to <a href="https://eccv2022.ecva.net/">ECCV 2022</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">09/2021</span>
+            <span class="title">
+              <a href="https://aclanthology.org/2021.nlp4convai-1.19/">Our dialogue system paper</a> got accepted to <a href="https://sites.google.com/view/3rdnlp4convai/">EMNLP, 3rd NLP4ConvAI</a>"
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">09/2021</span>
+            <span class="title">
+              I was a member of the <a href="https://www.iros2021.org/committee">IROS 2021 conference</a> organizing comittee
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">09/2021</span>
+            <span class="title">
+              Started PhD at <strong>CTU</strong> under the supervision of <a href="https://tsattler.github.io/"><strong>Torsten Sattler</strong></a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">02/2021</span>
+            <span class="title">
+              <a href="https://ieeexplore.ieee.org/document/9384194">Our visual navigation paper</a> got accepted to <a href="http://www.icra2021.org">ICRA 2021, RA-L</a>
+            </span>
+          </div>
+        </div>
+      </section>
+      {% include "partials/publications-section.njk" %}
+      <div class="flex-break"></div>
+      {% include "partials/teaching-section.njk" %}
+      {% include "partials/education-section.njk" %}
+      {% include "partials/experience-section.njk" %}
+    </div>
+    <div class="message-center-container">
+      <div class="message-center" id="messageCenter">
+      </div>
+    </div>
+    <script async src="js/scripts.js"></script>
+  </body>
+</html>
