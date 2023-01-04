@@ -31,6 +31,12 @@ header .profile-name-container {
   align-items: center;
 }
 
+header .rg-subtitle {
+  font-size: 1.3em;
+  margin-top: .6em;
+  display: inline-block;
+}
+
 .print {
   display: none;
 }
@@ -183,6 +189,34 @@ section {
 
 .expanded .see-more-btn::after {
   content: '(Show less)'
+}
+
+
+.rg-item .date { 
+  font-style: italic;
+  margin-right: .6em;
+}
+.rg-item .author {
+  margin-right: .4em;
+  min-width: 15ch;
+  display: inline-block;
+}
+.rg-item .name {
+  font-weight: bold;
+}
+.rg-item .date, .rg-item .author, .rg-item .name {
+  font-size: 1.2em;
+}
+.rg-item .rg-paper-title {
+  margin-left: 1em;
+  display: inline-block;
+  margin-bottom: 0.2em;
+}
+.rg-item .rg-paper:nth-child(2)  {
+  margin-top: .3em;
+}
+.rg-item {
+  margin-bottom: 1.6em
 }
 
 @media print {
@@ -491,11 +525,20 @@ section.c2 {
   .image-item-container .responsive-image-container {
     display: none;
   }
+
+  .rg-item .author {
+    margin-right: .6em;
+    min-width: auto;
+  }
 }
 
 @media (max-width: 400px) {
   body {
     font-size: 12px;
     margin: 0px 20px;
+  }
+
+  .rg-item .name {
+    display: block;
   }
 }

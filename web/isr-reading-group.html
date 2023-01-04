@@ -1,0 +1,139 @@
+{% from "partials/helpers.njk" import image %}
+{% set homepage = false %}
+{% set current_page = "./isr-reading-group" %}
+<!DOCTYPE html>
+<html lang="en" moznomarginboxes mozdisallowselectionprint>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Reading Group - Implicit Scene Representation">
+    <meta name="keywords" content="deep learning, neural rendering, reading group">
+    <meta name="author" content="Jonas Kulhanek">
+    <meta http-equiv="content-language" content="en-GB">
+    <link rel="alternate" href="./" hreflang="x-default" />
+    <title>Reading Group - Implicit Scene Representation</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ga_tracking_code | safe }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ga_tracking_code | safe }}');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/print.css" media="print" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Reading Group<br><small>Implicit Scene Representation</small></h1>
+      <span class="rg-subtitle">Summer 2023</span>
+    </header>
+    <div class="main">
+      <section id="rg-sessions" class="c1">
+        <h2>Schedule</h2>
+        <div class="container">
+          <div class="loader">loading...</div>
+          <script>
+function CSVToArray( strData, strDelimiter ){
+  strDelimiter = (strDelimiter || ",");
+  var objPattern = new RegExp(
+    (
+        "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+        "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+        "([^\"\\" + strDelimiter + "\\r\\n]*))"
+    ),
+    "gi"
+    );
+  var arrData = [[]];
+  var arrMatches = null;
+  while (arrMatches = objPattern.exec( strData )){
+    var strMatchedDelimiter = arrMatches[ 1 ];
+    if (strMatchedDelimiter.length && strMatchedDelimiter !== strDelimiter) {
+      arrData.push( [] );
+    }
+    var strMatchedValue;
+    if (arrMatches[ 2 ]) {
+      strMatchedValue = arrMatches[ 2 ].replace(new RegExp( "\"\"", "g" ), "\"");
+    } else {
+      strMatchedValue = arrMatches[ 3 ];
+    }
+    arrData[ arrData.length - 1 ].push( strMatchedValue );
+  }
+  return( arrData );
+}
+var container = document.querySelector("#rg-sessions > .container");
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWil-baJNSKZ1jQATaJbwcTvyFq6DHW8hSiIV0D1lVYpxBCoXLjNajMn_/pub?gid=0&single=true&output=csv", {cache: "no-store"}).then(
+  function (response) {
+    if (!response.ok) {
+      throw Error("Invalid response");
+    }
+    return response.text();
+  }
+).then(function (response) {
+  response = CSVToArray(response);
+  header = response[0];
+  out_html = "";
+  var rg_papers = "";
+  var x = null;
+  function finishLast() {
+    if (x) {
+      out_html += `
+<div class="rg-item">
+  <div>
+    <span class="date">${x.date}</span>
+    <span class="author">${x.name}</span>
+    <span class="name">${x.paper}</span>
+  </div>
+  ${rg_papers}
+</div>
+    `;
+    }
+  }
+  for(var i=1; i<response.length; ++i) {
+    var y = {};
+    for(var j=0; j<header.length; ++j) {
+      y[header[j]] = response[i][j];
+    }
+    if (y["date"]) {
+      finishLast();
+      rg_papers = "";
+      x = y;
+    }
+    if (y.link.startsWith("http")) {
+      rg_papers += `
+  <div class="rg-paper">
+    <a class="rg-paper-title" href="${y.link}">${y.title}</a>
+  </div>
+    `;
+    } else {
+      rg_papers += `
+  <div class="rg-paper">
+    <span class="rg-paper-title">${y.title}</span>
+  </div>
+    `;
+    }
+  }
+  finishLast()
+  container.innerHTML = out_html;
+}).catch(function (response) {
+  console.log(response);
+  container.innerHTML = "Failed to load!"
+});
+          </script>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="message-center-container">
+      <div class="message-center" id="messageCenter">
+      </div>
+    </div>
+    <script async src="js/scripts.js"></script>
+  </body>
+</html>
