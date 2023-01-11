@@ -200,6 +200,7 @@ section {
   margin-right: .4em;
   min-width: 15ch;
   display: inline-block;
+  color: black;
 }
 .rg-item .name {
   font-weight: bold;

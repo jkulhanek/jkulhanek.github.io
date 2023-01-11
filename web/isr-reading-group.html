@@ -88,11 +88,15 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWi
   var x = null;
   function finishLast() {
     if (x) {
+      var author_field = `<span class="author">${x.name}</span>`;
+      if (x['profile link']) {
+        author_field = `<a class="author" href="${x['profile link']}">${x.name}</a>`
+      }
       out_html += `
 <div class="rg-item">
   <div>
     <span class="date">${x.date}</span>
-    <span class="author">${x.name}</span>
+    ${author_field}
     <span class="name">${x.paper}</span>
   </div>
   ${rg_papers}
