@@ -41,9 +41,32 @@
     </header>
     <div class="main">
       <section id="rg-sessions" class="c1">
-        <h2>Schedule</h2>
+        <h2>Upcoming</h2>
+        <div class="container" id="upcoming">
+          <div class="loader">loading...</div>
+          </div>
+        </div>
+      </section>
+      <section id="past-sessions" class="c1">
+        <h2>Past sessions</h2>
         <div class="container">
           <div class="loader">loading...</div>
+        </div>
+      </section>
+      <section>
+        <h2>Information</h2>
+        <ul style="text-align:justify;">
+<li>The reading group will be held physically at CIIRC, CTU and virtually on Zoom (link: <a style="word-break:break-all;" href="https://cesnet.zoom.us/j/93495012156?pwd=T1JKVFRodWREV3prSGFkdDNpekZpUT09">https://cesnet.zoom.us/j/93495012156?pwd=T1JKVFRodWREV3prSGFkdDNpekZpUT09</a>). The physical room will be specified later.</li>
+<li>The format may vary per presentation, but the speaker shall allocate roughly 25 minutes to the presentation and 35 minutes to the discussion.</li>
+<li>Please <strong>read/re-read the papers before the reading group</strong> for a fruitful discussion.</li>
+<li>If you want to subscribe to the reading group invite emails, if you want to present a paper, or have any questions, please contact Jonas Kulhanek at <a href="mailto:jonas.kulhanek@cvut.cz">jonas.kulhanek@cvut.cz</a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="message-center-container">
+      <div class="message-center" id="messageCenter">
+      </div>
+    </div>
           <script>
 function CSVToArray( strData, strDelimiter ){
   strDelimiter = (strDelimiter || ",");
@@ -72,7 +95,8 @@ function CSVToArray( strData, strDelimiter ){
   }
   return( arrData );
 }
-var container = document.querySelector("#rg-sessions > .container");
+var containerUpcoming = document.querySelector("#rg-sessions > .container");
+var containerPast = document.querySelector("#past-sessions > .container");
 fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWil-baJNSKZ1jQATaJbwcTvyFq6DHW8hSiIV0D1lVYpxBCoXLjNajMn_/pub?gid=0&single=true&output=csv", {cache: "no-store"}).then(
   function (response) {
     if (!response.ok) {
@@ -83,16 +107,23 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWi
 ).then(function (response) {
   response = CSVToArray(response);
   header = response[0];
-  out_html = "";
+  out_html_upcoming = "";
+  out_html_past = "";
   var rg_papers = "";
   var x = null;
   function finishLast() {
     if (x) {
+      // Test if the date is in the future
+      const [day, month, year] = x.date.split("-").map(x => parseInt(x));
+      const is_past = new Date(year, month-1, day, 23, 59, 59) < new Date();
       var author_field = `<span class="author">${x.name}</span>`;
       if (x['profile link']) {
         author_field = `<a class="author" href="${x['profile link']}">${x.name}</a>`
       }
-      out_html += `
+      if (is_past && x['recording']) {
+        rg_papers += `<div class="rg-recording-link"><a class="recording" href="${x['recording']}"><strong>recording</strong></a></div>`
+      }
+      var added_html = `
 <div class="rg-item">
   <div>
     <span class="date">${x.date}</span>
@@ -102,6 +133,11 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWi
   ${rg_papers}
 </div>
     `;
+      if (is_past) {
+        out_html_past += added_html;
+      } else {
+        out_html_upcoming += added_html;
+      }
     }
   }
   for(var i=1; i<response.length; ++i) {
@@ -129,29 +165,14 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWi
     }
   }
   finishLast()
-  container.innerHTML = out_html;
+  containerUpcoming.innerHTML = out_html_upcoming;
+  containerPast.innerHTML = out_html_past;
 }).catch(function (response) {
   console.log(response);
-  container.innerHTML = "Failed to load!"
+  containerPast.innerHTML = "Failed to load!"
+  containerUpcoming.innerHTML = "Failed to load!"
 });
           </script>
-          </div>
-        </div>
-      </section>
-      <section>
-        <h2>Information</h2>
-        <ul style="text-align:justify;">
-<li>The reading group will be held physically at CIIRC, CTU and virtually on Zoom (link: <a style="word-break:break-all;" href="https://cesnet.zoom.us/j/93495012156?pwd=T1JKVFRodWREV3prSGFkdDNpekZpUT09">https://cesnet.zoom.us/j/93495012156?pwd=T1JKVFRodWREV3prSGFkdDNpekZpUT09</a>). The physical room will be specified later.</li>
-<li>The format may vary per presentation, but the speaker shall allocate roughly 25 minutes to the presentation and 35 minutes to the discussion.</li>
-<li>Please <strong>read/re-read the papers before the reading group</strong> for a fruitful discussion.</li>
-<li>If you want to subscribe to the reading group invite emails, if you want to present a paper, or have any questions, please contact Jonas Kulhanek at <a href="mailto:jonas.kulhanek@cvut.cz">jonas.kulhanek@cvut.cz</a></li>
-        </ul>
-      </section>
-    </div>
-    <div class="message-center-container">
-      <div class="message-center" id="messageCenter">
-      </div>
-    </div>
     <script async src="js/scripts.js"></script>
   </body>
 </html>

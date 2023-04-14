@@ -213,6 +213,15 @@ section {
   display: inline-block;
   margin-bottom: 0.2em;
 }
+.rg-item .rg-recording-link {
+    margin-left: 1em;
+    display: inline-block;
+    margin-bottom: 0.2em;
+    margin-top: 0.5em;
+}
+.rg-item .rg-recording-link a {
+    font-size: 1.2em;
+}
 .rg-item .rg-paper:nth-child(2)  {
   margin-top: .3em;
 }
