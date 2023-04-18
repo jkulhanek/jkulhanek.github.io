@@ -121,7 +121,7 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWi
         author_field = `<a class="author" href="${x['profile link']}">${x.name}</a>`
       }
       if (is_past && x['recording']) {
-        rg_papers += `<div class="rg-recording-link"><a class="recording" href="${x['recording']}"><strong>recording</strong></a></div>`
+        rg_papers += `<div class="rg-recording-link"><a class="recording" rel="nofollow" href="${x['recording']}"><strong>recording</strong></a></div>`
       }
       var added_html = `
 <div class="rg-item">
