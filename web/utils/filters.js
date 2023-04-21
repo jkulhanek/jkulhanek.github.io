@@ -59,10 +59,8 @@ const publicationIconMap = {
   vid: 'fa fa-film',
 };
 
-function load_bib(props) {
-  if (props.type !== 'bib')
-    return '';
-  const fpath = require.resolve('../' + props.href);
+function load_bib(path) {
+  const fpath = require.resolve('../public/' + path);
   return encodeURIComponent(fs.readFileSync(fpath, 'utf-8'));
 }
 
