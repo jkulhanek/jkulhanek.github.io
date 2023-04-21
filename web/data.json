@@ -101,7 +101,7 @@
             "links": [{
                 "type": "pdf",
                 "rel": "slides",
-                "href":"resources/ai-2player-slides.pdf"
+                "href":"assets/ai-2player-slides.pdf"
             },
             {
                 "type":"web",
