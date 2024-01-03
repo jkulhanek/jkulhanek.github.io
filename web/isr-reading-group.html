@@ -26,7 +26,7 @@
   <body>
     <header>
       <h1>Reading Group<br><small>Implicit Scene Representation</small></h1>
-      <span class="rg-subtitle">Summer 2023</span>
+      <span id="semester" class="rg-subtitle">Summer 2024</span>
       <p style="text-align: justify;">
         The reading groups will be held at CIIRC (room B-633) <strong>at 3PM Prague time</strong>. Alternatively,
         you can join from Zoom using this link: <a style="word-break:break-all;" href="https://cesnet.zoom.us/j/93495012156?pwd=T1JKVFRodWREV3prSGFkdDNpekZpUT09">https://cesnet.zoom.us/j/93495012156?pwd=T1JKVFRodWREV3prSGFkdDNpekZpUT09</a>.
@@ -91,6 +91,10 @@ function CSVToArray( strData, strDelimiter ){
 }
 var containerUpcoming = document.querySelector("#rg-sessions > .container");
 var containerPast = document.querySelector("#past-sessions > .container");
+var year = (new Date().getMonth() <= 1) ? (new Date()).getFullYear() - 1 : (new Date()).getFullYear();
+var semester = (new Date().getMonth() >= 8 || new Date().getMonth() <= 1)? "Winter" : "Summer";
+document.getElementById("semester").innerText = semester + " " + (new Date()).getFullYear();
+
 fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQL7PIqYoawLDnwBp-JEPrIWil-baJNSKZ1jQATaJbwcTvyFq6DHW8hSiIV0D1lVYpxBCoXLjNajMn_/pub?gid=0&single=true&output=csv", {cache: "no-store"}).then(
   function (response) {
     if (!response.ok) {
