@@ -6,13 +6,13 @@
 {% if lazy %}
 <picture>
   <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
-  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpb" | safe }} 2x" type="image/jpeg" />
+  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpg" | safe }} 2x" type="image/jpeg" />
   <img alt="${alt}" src="{{ src + ".jpg"}}" loading="lazy" class="lazy-img {{class}}"/>
 </picture>
 {% else %}
 <picture>
   <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
-  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpb" | safe }} 2x" type="image/jpeg" />
+  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpg" | safe }} 2x" type="image/jpeg" />
   <img alt="${alt}" src="{{ src + ".jpg"}}" class="{{class}}"/>
 </picture>
 {% endif %}

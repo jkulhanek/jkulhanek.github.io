@@ -58,7 +58,9 @@ gulp.task('build-cv', gulp.series('data.build.json', function cv() {
 
 
 gulp.task('responsive-images', function() {
-  return gulp.src('./web/images/*.{png,jpg,jpeg}')
+  // Copy GIF and WebP images
+  const task1 = gulp.src('./web/images/*.{gif,webp}').pipe(gulp.dest('dist/images'));
+  const task2 = gulp.src('./web/images/*.{png,jpg,jpeg}')
     .pipe(
       responsive({
         'profile.png': [{
@@ -110,6 +112,7 @@ gulp.task('responsive-images', function() {
       })
     )
     .pipe(gulp.dest('dist/images'))
+  return Promise.all([task1, task2]);
 });
 
 gulp.task('copy', function () {
