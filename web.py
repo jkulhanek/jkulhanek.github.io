@@ -229,7 +229,7 @@ TRANSFORMS = {
     "/images/profile.png": partial(_resize_image, size=(240, 240)),
     "/images/project-*": partial(_resize_image, size=(86, 86)),
     "/images/pd-*": partial(_resize_image, size=(86, 86)),
-    "/assets/**/*": partial(_copy_file),
+    "/assets/*": partial(_copy_file),
     "/scripts.js": partial(_jsmin),
     "/*.css": partial(_cssmin),
     "/robots.txt": partial(_copy_file),
