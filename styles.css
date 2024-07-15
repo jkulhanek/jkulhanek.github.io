@@ -532,10 +532,6 @@ section.c2 {
     columns: 1;
   }
 
-  .image-item-container .responsive-image-container {
-    display: none;
-  }
-
   .rg-item .author {
     margin-right: .6em;
     min-width: auto;

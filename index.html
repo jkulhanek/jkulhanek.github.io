@@ -6,19 +6,18 @@
 {% endif %}
 {% endmacro %}
 {% macro image(src, alt='', lazy=false, class='') %}
+{# Set default extension as the extension of src #}
+{% set ext = '.' + src.split('.')[-1] %}
+{% set src = src[:-(ext|length)] %}
+<picture>
+  <source srcset="{{ src + '.webp' | safe }}, {{ src + '@2x.webp' | safe }} 2x" type="image/webp" />
+  <source srcset="{{ src + ext | safe }}, {{ src + '@2x' + ext | safe }} 2x" type="image/jpeg" />
 {% if lazy %}
-<picture>
-  <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
-  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpg" | safe }} 2x" type="image/jpeg" />
-  <img alt="${alt}" src="{{ src + ".jpg"}}" loading="lazy" class="lazy-img {{class}}"/>
-</picture>
+  <img alt="${alt}" src="{{ src + ext}}" loading="lazy" class="lazy-img {{class}}"/>
 {% else %}
-<picture>
-  <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
-  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpg" | safe }} 2x" type="image/jpeg" />
-  <img alt="${alt}" src="{{ src + ".jpg"}}" class="{{class}}"/>
-</picture>
+  <img alt="${alt}" src="{{ src + ext}}" class="{{class}}"/>
 {% endif %}
+</picture>
 {% endmacro %}
 <!DOCTYPE html>
 <html lang="en" moznomarginboxes mozdisallowselectionprint>
@@ -136,10 +135,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                <picture>
-                  <source srcset="/images/pd-wg.webp" type="image/webp" />
-                  <img class="lazy-img" loading="lazy" alt="Dynamic 3D Gaussian Fields for Urban Areas" src="images/wg.gif"/>
-                </picture>
+                {{image("/images/pd-wg.gif", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -162,11 +158,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                <picture>
-                  <source srcset="/images/pd-fisher2024.webp" type="image/webp" />
-                  <source srcset="/images/pd-fisher2024.gif" type="image/gif" />
-                  <img class="lazy-img" loading="lazy" alt="Dynamic 3D Gaussian Fields for Urban Areas" src="images/pd-fisher2024.gif"/>
-                </picture>
+                {{image("/images/pd-fisher2024.gif", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -190,7 +182,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                {{image("/images/project-tetranerf", lazy=true)}}
+                {{image("/images/project-tetranerf.png", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -213,7 +205,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                {{image("/images/project-viewformer", lazy=true)}}
+                {{image("/images/project-viewformer.png", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -236,7 +228,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                {{image("/images/project-symformer", lazy=true)}}
+                {{image("/images/project-symformer.png", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -259,7 +251,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                {{image("/images/project-augpt", lazy=true)}}
+                {{image("/images/project-augpt.png", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -282,7 +274,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                {{image("/images/project-rw-nav", lazy=true)}}
+                {{image("/images/project-rw-nav.jpg", lazy=true)}}
               </div>
             </div>
             <div class="text">
@@ -305,7 +297,7 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
-                {{image("/images/project-a2cat-vn", lazy=true)}}
+                {{image("/images/project-a2cat-vn.png", lazy=true)}}
               </div>
             </div>
             <div class="text">
