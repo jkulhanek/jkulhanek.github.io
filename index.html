@@ -131,7 +131,6 @@
       </section>
       <section id="publications" class="c2">
         <h2>Publications</h2>
-
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
@@ -154,6 +153,30 @@
               </ul>
             </div>
           </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/pd-nerfbaselines.png", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://jkulhanek.com/nerfbaselines/" class="text-link">NerfBaselines: Consistent and Reproducible Evaluation of Novel View Synthesis Methods</a></span>
+              <span class="publication-authors">Jonas Kulhanek and Torsten Sattler</span>
+              <span class="publication-venue"><i>arXiv</i></span>
+              {{citeCount(citeCounts["2024nerfbaselines"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2406.17345" rel="nofollow">paper</a></li>
+                <li><a href="https://jkulhanek.com/nerfbaselines/">web</a></li>
+                <li><a 
+                    href="/assets/kulhanek2024nerfbaselines.bib" 
+                    data-bib="{{ 'assets/kulhanek2024nerfbaselines.bib' | load_bib | safe }}" 
+                    download="kulhanek2024nerfbaselines.bib"
+                    rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
 
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
