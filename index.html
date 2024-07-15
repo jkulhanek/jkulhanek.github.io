@@ -1,0 +1,451 @@
+{% macro citeCount(count) %}
+{% if count %}
+<span class="publication-citecount">
+  cited by: {{count}}
+</span>
+{% endif %}
+{% endmacro %}
+{% macro image(src, alt='', lazy=false, class='') %}
+{% if lazy %}
+<picture>
+  <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
+  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpg" | safe }} 2x" type="image/jpeg" />
+  <img alt="${alt}" src="{{ src + ".jpg"}}" loading="lazy" class="lazy-img {{class}}"/>
+</picture>
+{% else %}
+<picture>
+  <source srcset="{{ src + ".webp" | safe }}, {{ src + "@2x.webp" | safe }} 2x" type="image/webp" />
+  <source srcset="{{ src + ".jpg" | safe }}, {{ src + "@2x.jpg" | safe }} 2x" type="image/jpeg" />
+  <img alt="${alt}" src="{{ src + ".jpg"}}" class="{{class}}"/>
+</picture>
+{% endif %}
+{% endmacro %}
+<!DOCTYPE html>
+<html lang="en" moznomarginboxes mozdisallowselectionprint>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Jonas Kulhanek - Personal Website">
+    <meta name="keywords" content="researcher, deep learning, phd, neural rendering, cv, portfolio, personal resume">
+    <meta name="author" content="Jonas Kulhanek">
+    <meta http-equiv="content-language" content="en-GB">
+    <link rel="alternate" href="./" hreflang="x-default" />
+    <title>Jonas Kulhanek - Personal Website</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/profile.webp">
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/print.css" media="print" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="profile-name-container">
+        <div class="profile-picture">
+          <picture>
+            <source srcset="/images/profile.webp, /images/profile@2x.webp 2x" type="image/webp" />
+            <source srcset="/images/profile.jpg, /images/profile@2x.jpg 2x" type="image/jpeg" />
+            <img alt="Profile picture" src="/images/profile.jpg" />
+          </picture>
+        </div>
+        <div class="header-main">
+          <h1><span class="first">Jonáš</span> Kulhánek</h1>
+          <div class="print sub-header-main">
+            <a href="https://jkulhanek.com/">https://jkulhanek.com</a><br>
+            <a href="mailto:jonas.kulhanek@live.com">jonas.kulhanek@live.com</a>&nbsp;&#124;&nbsp;+420 728 042 412
+          </div>
+          <div class="subheader noprint">PhD student</div>
+          <ul class="links noprint">
+            <li><a href="mailto:jonas.kulhanek@live.com">Email</a></li>
+            <li><a href="https://github.com/jkulhanek">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/jonaskulhanek">LinkedIn</a></li>
+            <li><a href="{{ google_scholar_url | safe }}">Google Scholar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bio noprint">
+        I am a PhD student in the Computer Science doctoral study program at the Department of Cybernetics, Faculty of Electrical Engineering (FEE),
+        Czech Technical University (CTU). I am currently researching the topic of <i>implicit 3D scene representation</i> under the supervision of <i><a href="https://tsattler.github.io/">Torsten Sattler</a></i>,
+         co-supervised by <i><a href="https://people.inf.ethz.ch/marc.pollefeys/">Marc Pollefeys</a></i>.
+         The PhD is part of the <a href="https://ellis.eu/">European Laboratory for Learning and Intelligent Systems (ELLIS)</a> program.
+
+        I received my BSc degree from FEE, CTU, and my MSc degree from the Faculty of Mathematics and Physics, Charles University, both in computer science.
+        Before starting my doctoral studies, I was a junior researcher at the Czech Institute of Informatics, Robotics and Cybernetics (CIIRC), CTU,
+         where I focused on visual navigation using deep reinforcement learning and neural scene representation and rendering.
+      </div>
+    </header>
+    <div class="main">
+      <section id="news" class="c1">
+        <h2>News</h2>
+        <div class="container">
+          <div class="news-item">
+            <span class="date">08/2023</span>
+            <span class="title">
+              <a href="https://jkulhanek.com/tetra-nerf/">Our Tetra-NeRF paper</a> got accepted to <a href="https://iccv2023.thecvf.com/">ICCV 2023</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">01/2023</span>
+            <span class="title">
+              I joined the ELLIS program with topic: <a href="https://ellis.eu/projects/towards-a-unified-3d-scene-representation">Towards a Unified 3D Scene Representation</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">11/2022</span>
+            <span class="title">
+              I finished my internship at <a href="https://about.facebook.com/realitylabs/">Meta Reality Labs</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">07/2022</span>
+            <span class="title">
+              <a href="https://jkulhanek.com/viewformer/">Our ViewFormer paper</a> got accepted to <a href="https://eccv2022.ecva.net/">ECCV 2022</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">09/2021</span>
+            <span class="title">
+              <a href="https://aclanthology.org/2021.nlp4convai-1.19/">Our dialogue system paper</a> got accepted to <a href="https://sites.google.com/view/3rdnlp4convai/">EMNLP, 3rd NLP4ConvAI</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">09/2021</span>
+            <span class="title">
+              I was a member of the <a href="https://www.iros2021.org/committee">IROS 2021 conference</a> organizing comittee
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">09/2021</span>
+            <span class="title">
+              Started PhD at <i>CTU</i> under the supervision of <a href="https://tsattler.github.io/"><i>Torsten Sattler</i></a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">02/2021</span>
+            <span class="title">
+              <a href="https://ieeexplore.ieee.org/document/9384194">Our visual navigation paper</a> got accepted to <a href="http://www.icra2021.org">ICRA 2021, RA-L</a>
+            </span>
+          </div>
+        </div>
+      </section>
+      <section id="publications" class="c2">
+        <h2>Publications</h2>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                <picture>
+                  <source srcset="/images/pd-wg.webp" type="image/webp" />
+                  <img class="lazy-img" loading="lazy" alt="Dynamic 3D Gaussian Fields for Urban Areas" src="images/wg.gif"/>
+                </picture>
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://tobiasfshr.github.io/pub/4dgf/" class="text-link">Dynamic 3D Gaussian Fields for Urban Areas</a></span>
+              <span class="publication-authors">Tobias Fischer, Jonas Kulhanek, Samuel Rota Bulò, Lorenzo Porzi, Marc Pollefeys, and Peter Kontschieder</span>
+              <span class="publication-venue"><i>arXiv</i></span>
+              {{citeCount(citeCounts["2024dynamic"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2406.03175" rel="nofollow">paper</a></li>
+                <li><a href="https://tobiasfshr.github.io/pub/4dgf/">web</a></li>
+                <li><a href="assets/fischer2024dynamic.bib" data-bib="{{ 'assets/fischer2024dynamic.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                <picture>
+                  <source srcset="/images/pd-fisher2024.webp" type="image/webp" />
+                  <source srcset="/images/pd-fisher2024.gif" type="image/gif" />
+                  <img class="lazy-img" loading="lazy" alt="Dynamic 3D Gaussian Fields for Urban Areas" src="images/pd-fisher2024.gif"/>
+                </picture>
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://tobiasfshr.github.io/pub/4dgf/" class="text-link">Dynamic 3D Gaussian Fields for Urban Areas</a></span>
+              <span class="publication-authors">Tobias Fischer, Jonas Kulhanek, Samuel Rota Bulò, Lorenzo Porzi, Marc Pollefeys, and Peter Kontschieder</span>
+              <span class="publication-venue"><i>arXiv</i></span>
+              {{citeCount(citeCounts["2024dynamic"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2406.03175" rel="nofollow">paper</a></li>
+                <li><a href="https://tobiasfshr.github.io/pub/4dgf/">web</a></li>
+                <li><a href="assets/fischer2024dynamic.bib" data-bib="{{ 'assets/fischer2024dynamic.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/project-tetranerf", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://jkulhanek.com/tetra-nerf" class="text-link">Tetra-NeRF: Representing Neural Radiance Fields Using Tetrahedra</a></span>
+              <span class="publication-authors">Jonas Kulhanek and Torsten Sattler</span>
+              <span class="publication-venue"><i>ICCV 2023</i></span>
+              {{citeCount(citeCounts["2023tetra"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2304.09987" rel="nofollow">paper</a></li>
+                <li><a href="https://jkulhanek.com/tetra-nerf">web</a></li>
+                <li><a href="assets/tetranerf2023.bib" data-bib="{{ 'assets/tetranerf2023.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/project-viewformer", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://jkulhanek.com/viewformer" class="text-link">ViewFormer: NeRF-free Neural Rendering from Few Images Using Transformers</a></span>
+              <span class="publication-authors">Jonáš Kulhánek and Erik Derner and Torsten Sattler and Robert Babuška</span>
+              <span class="publication-venue"><i>ECCV 2022</i></span>
+              {{citeCount(citeCounts["2022viewformer"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2203.10157" rel="nofollow">paper</a></li>
+                <li><a href="https://jkulhanek.com/viewformer">web</a></li>
+                <li><a href="assets/viewformer2022.bib" data-bib="{{ 'assets/viewformer2022.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/project-symformer", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://vastlik.github.io/symformer" class="text-link">SymFormer: End-to-end symbolic regression using transformer-based architecture</a></span>
+              <span class="publication-authors">Martin Vastl and Jonáš Kulhánek and Jiří Kubalík and Erik Derner and Robert Babuška</span>
+              <span class="publication-venue"><i>IEEE Access 2024</i></span>
+              {{citeCount(citeCounts["2022symformer"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2205.15764" rel="nofollow">paper</a></li>
+                <li><a href="https://vastlik.github.io/symformer">web</a></li>
+                <li><a href="assets/symformer2022.bib" data-bib="{{ 'assets/symformer2022.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/project-augpt", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title">AuGPT: Auxiliary Tasks and Data Augmentation for End-To-End Dialogue with Pre-Trained Language Models</span>
+              <span class="publication-authors">Jonáš Kulhánek and Vojtěch Hudeček and Tomáš Nekvinda and Ondřej Dušek</span>
+              <span class="publication-venue"><i>NLP4ConvAI, EMNLP 2021</i></span>
+              {{citeCount(citeCounts["2021augpt"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2102.05126" rel="nofollow">paper</a></li>
+                <li><a href="assets/augpt2021.bib" data-bib="{{ 'assets/augpt2021.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+                <li><a href="https://github.com/ufal/augpt">code</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/project-rw-nav", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a class="text-link" href="https://jkulhanek.com/robot-visual-navigation">Visual Navigation in Real-World Indoor Environments Using End-to-End Deep Reinforcement Learning</a></span>
+              <span class="publication-authors">Jonáš Kulhánek and Erik Derner and Robert Babuška</span>
+              <span class="publication-venue"><i>RA-L 2021</i></span>
+              {{citeCount(citeCounts["2021visual"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2010.10903" rel="nofollow">paper</a></li>
+                <li><a href="https://jkulhanek.com/robot-visual-navigation">web</a></li>
+                <li><a href="assets/rwnav2021.bib" data-bib="{{ 'assets/rwnav2021.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/project-a2cat-vn", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a class="text-link" href="https://jkulhanek.com/a2cat-vn">Vision-based Navigation Using Deep Reinforcement Learning</a></span>
+              <span class="publication-authors">Jonáš Kulhánek and Erik Derner and Tim de Bruin and Robert Babuška</span>
+              <span class="publication-venue"><i>ECCV 2019</i></span>
+              {{citeCount(citeCounts["2019vision"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/1908.03627" rel="nofollow">paper</a></li>
+                <li><a href="https://jkulhanek.com/a2cat-vn">web</a></li>
+                <li><a href="assets/ecmr2019.bib" data-bib="{{ 'assets/ecmr2019.bib' | load_bib | safe }}" rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+      </section>
+      <div class="flex-break"></div>
+      <section id="teaching" class="c1">
+        <h2>Teaching</h2>
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Reading Group on Implicit Scene Representation</span>
+              <span class="date">Spring 2023</span></div>
+            <span class="subtitle">CTU in Prague</span>
+            <div>NeRFs, surface reconstruction, volumetric rendering, etc.</div>
+          </div>
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Introduction to Artificial Intelligence</span>
+              <span class="date">Spring 2020</span></div>
+            <span class="subtitle">Teaching assistant at FEE, CTU in Prague</span>
+            <div>Searching state space, two player zero-sum games, constraint satisfaction problems, planning, knowledge representation in FOL, decision making with imperfect information, MDP, evolutionary techniques</div>
+          </div>
+      </section>
+      <section id="education" class="c1">
+        <h2>Education</h2>
+        <div class="section-item">
+          <div class="title">
+            <span class="first-part">Charles University</span>
+            <span class="date-range">(Jun 2021)</span>
+          </div>
+          <span class="subtitle">Master in Artificial Intelligence</span>
+          <div>Faculty of Mathematics and Physics, graduated summa cum laude</div>
+        </div>
+        <div class="section-item">
+          <div class="title">
+            <span class="first-part">Czech Technical University in Prague</span>
+            <span class="date-range">(Jun 2019)</span>
+          </div>
+          <span class="subtitle">Bachelor in Computer Science</span>
+          <div>Faculty of Electrical Engineering, graduated summa cum laude</div>
+        </div>
+      </section>
+      <section id="experience" class="">
+        <h2>
+          <span class="noprint">Work experience</span><span class="print">Selected experience</span>
+          <a href="javascript: void" onclick="this.parentElement.parentElement.classList.toggle('expanded')" class="see-more-btn"></a>
+        </h2>
+        <div class="c2-container">
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Czech Institute of Informatics, Robotics and Cybernetics, CTU</span>
+              <span class="date-range">Sep 2021 &mdash; Present</span>
+            </div>
+            <span class="subtitle">PhD candidate</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Supervisor <strong>Torsten Sattler</strong></li>
+              <li>Using priors in neural rendering and neural scene representation</li>
+            </ul>
+            <div class="if-collapsed">
+              Supervisors <strong>Torsten Sattler</strong> and <strong>Marc Pollefeys</strong>, 3D scene reconstruction
+            </div>
+          </div>
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Czech Institute of Informatics, Robotics and Cybernetics, CTU</span>
+              <span class="date-range">Aug 2020 &mdash; Aug 2021</span>
+            </div>
+            <span class="subtitle">Junior researcher</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Visual navigation using deep reinforcement learning (DRL)</li>
+              <li>Implementing SoTA DRL algorithms including <strong>Rainbow, PAAC, AlphaZero</strong></li>
+              <li>Publishing an open-source 3D environment simulator to train DRL agents</li>
+              <li>Working with <strong>Tomas Mikolov</strong> on cellular automata applied to NLP</li>
+              <li>Researching dialogue systems with pre-trained LMs (GPT2, BERT)</li>
+              <li>Running large distributed GPU training</li>
+              <li>Achieving <strong>3rd place</strong> in the DSTC9 end-to-end multi-domain dialogue task</li>
+              <li><strong>PyTorch</strong>, Slurm, Numpy, ROS, ...</li>
+            </ul>
+            <div class="if-collapsed">Visual navigation using deep reinforcement learning, end-to-end dialogue systems using transformer models</div>
+          </div>
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Delft University of Technology</span>
+              <span class="date-range">Feb 2019 &mdash; Apr 2019</span>
+            </div>
+            <span class="subtitle">Research intern</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Visual navigation using deep reinforcement learning (<strong>DRL</strong>)</li>
+              <li>Working under Prof. Dr. <strong>Robert Babuska</strong> at 3me</li>
+              <li>Publishing open-source DRL PyTorch library</li>
+              <li>Evaluating navigation algorithms on real <strong>mobile robots</strong></li>
+              <li><strong>PyTorch</strong>, Slurm, Numpy, ROS, ...</li>
+            </ul>
+            <div class="if-collapsed">
+              Working with <i>Robert Babuska</i> on visual navigation using deep reinforcement learning
+            </div>
+          </div>
+          <div class="section-item if-not-collapsed">
+            <div class="title">
+              <span class="first-part">Valatron</span>
+              <span class="date-range">Jun 2018 &mdash; Jan 2019</span>
+            </div>
+            <span class="subtitle">Backend developer</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Designing Node.js API backend and .NET Core backend</li>
+              <li>Leading a team of developers</li>
+              <li>Working on SPA frontend (React.js)</li>
+              <li>Deploying applications built using Azure Functions</li>
+              <li>Node.js, .NET Core, Azure Functions, React.js, ...</li>
+            </ul>
+          </div>
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Center for Machine Perception</span>
+              <span class="date-range">Feb 2018 &mdash; Jun 2018</span>
+            </div>
+            <span class="subtitle">Research intern</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Building object detectors using fully convolutional neural networks</li>
+              <li>Implementing RetinaNet, FasterRCNN, MaskNet (SoTA at that time)</li>
+              <li>Preparing object detection datasets and data pipelines</li>
+              <li><strong>TensorFlow</strong>, Numpy, OpenCV, ...</li>
+            </ul>
+            <div class="if-collapsed">Object detection for automotive industry</div>
+          </div>
+          <div class="section-item if-not-collapsed">
+            <div class="title">
+              <span class="first-part">Alza.cz</span>
+              <span class="date-range">Jun 2016 &mdash; Feb 2018</span>
+            </div>
+            <span class="subtitle">Full-stack developer</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Architecting backend (.NET core, WCF, SOA, SQL)</li>
+              <li>Designing continuous integration in TFS</li>
+              <li>Front-end website development (ASP.NET Web Forms)</li>
+            </ul>
+          </div>
+          <div class="section-item if-not-collapsed">
+            <div class="title">
+              <span class="first-part">CZECH NEWS CENTER</span>
+              <span class="date-range">Mar 2015 &mdash; May 2016</span>
+            </div>
+            <span class="subtitle">Mobile application developer</span>
+            <ul class="simple-list if-not-collapsed">
+              <li><strong>Tydenik Reflex</strong> app for Windows Phone — MVVM Light</li>
+              <li><strong>Reflex</strong> app for Windows 8 — MVVM Light</li>
+              <li><strong>Blesk</strong> app for Windows 8 and Windows Phone 8 — build with Prism</li>
+              <li>.NET, MVVM Light, Microsoft Prism, sqlite3, XAML</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="message-center-container">
+      <div class="message-center" id="messageCenter">
+      </div>
+    </div>
+    <script async src="/scripts.js"></script>
+  </body>
+</html>
