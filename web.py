@@ -198,6 +198,7 @@ def _prepare_data():
 def _cssmin(input_path, output_path, repo_path, minify_css=True, **kwargs):
     del kwargs
 
+    os.makedirs(os.path.dirname(output_path + repo_path), exist_ok=True)
     with open(input_path + repo_path, "r", encoding="utf8") as f, \
          open(output_path + repo_path, "w", encoding="utf8") as f2:
         css = f.read()
@@ -212,6 +213,7 @@ def _cssmin(input_path, output_path, repo_path, minify_css=True, **kwargs):
 def _jsmin(input_path, output_path, repo_path, minify_js=True, **kwargs):
     del kwargs
 
+    os.makedirs(os.path.dirname(output_path + repo_path), exist_ok=True)
     with open(input_path + repo_path, "r", encoding="utf8") as f, \
          open(output_path + repo_path, "w", encoding="utf8") as f2:
         js = f.read()
