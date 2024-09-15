@@ -64,12 +64,12 @@ def _get_cite_counts():
     response.raise_for_status()
     parsed_html = BeautifulSoup(response.text, 'html.parser')
 
-    records = parsed_html.body.findAll('div', attrs={'class':'gsc_a_tr'})
+    records = parsed_html.body.findAll(attrs={'class':'gsc_a_tr'})
     output = {}
     for a in records:
-        cite_count = a.find(attrs={'class': '.gsc_a_ac'}).text
-        title = a.find(attrs={'class': '.gsc_a_at'}).text
-        year = a.find(attrs={'class': '.gsc_a_y'}).text
+        cite_count = a.find(attrs={'class': 'gsc_a_ac'}).text
+        title = a.find(attrs={'class': 'gsc_a_at'}).text
+        year = a.find(attrs={'class': 'gsc_a_y'}).text
         if cite_count:
             output[get_publication_id(title, year)] = int(cite_count)
     return output
