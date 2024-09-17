@@ -225,6 +225,25 @@ def _jsmin(input_path, output_path, repo_path, minify_js=True, **kwargs):
         yield repo_path
 
 
+def _html_redirect(input_path, output_path, repo_path, *, target, **kwargs):
+    del kwargs, input_path
+
+    os.makedirs(os.path.dirname(output_path + repo_path), exist_ok=True)
+    with open(output_path + repo_path, "w", encoding="utf8") as f:
+        f.write(f"""<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url={target}">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>This page has been moved to <a href="{target}">{target}</a>.</p>
+</body>
+</html>
+""")
+    yield repo_path
 
 
 TRANSFORMS = {
@@ -237,6 +256,10 @@ TRANSFORMS = {
     "/robots.txt": partial(_copy_file),
     "/*.pdf": partial(_copy_file),
     "/index.html": partial(_transform_template, data=_prepare_data),
+    "+/rg.html": partial(_html_redirect, target="https://jkulhanek.com/reading-group"),
+    "+/isr-reading-group.html": partial(_html_redirect, target="https://jkulhanek.com/reading-group"),
+    "+/nerfbaselines/index.html": partial(_html_redirect, target="https://nerfbaselines.github.io/"),
+    "+/nerfbaselines/video.html": partial(_html_redirect, target="https://nerfbaselines.github.io/video.html"),
     "/[!_]*.html": partial(_transform_template),
 }
 
@@ -262,12 +285,25 @@ def _transform(input_path, output, files=None, **kwargs):
             continue
         oldsize = os.path.getsize(file)
         for k, func in TRANSFORMS.items():
+            if k.startswith("+"):
+                continue
             if fnmatch.fnmatch(repopath, k):
                 print(f"  {repopath}:")
                 for outname in func(input_path, output, repopath, **kwargs):
                     size = os.path.getsize(output + outname)
                     print(f"    {outname} (\033[93;1m{_formatsize(oldsize)}\033[0m -> \033[92;1m{_formatsize(size)}\033[0m)")
                 break
+    if any(k.startswith("+") for k in TRANSFORMS):
+        print()
+        print(f"  Added:")
+    # Generate added files
+    for k, func in TRANSFORMS.items():
+        if not k.startswith("+"):
+            continue
+        repopath = k[1:]
+        for outname in func(input_path, output, repopath, **kwargs):
+            size = os.path.getsize(output + outname)
+            print(f"    {outname} (\033[92;1m{_formatsize(size)}\033[0m)")
 
 
 def build(input_path, output, **kwargs):
