@@ -346,6 +346,13 @@ def start_dev_server(**kwargs):
 def get_click_group():
     main = click.Group("web")
 
+    @main.command("show-citations")
+    def _():
+        _setup_logging(False)
+        counts = _get_cite_counts()
+        for k, v in sorted(counts.items()):
+            print(f"{k}: {v}")
+
     @main.command("dev")
     @click.option("--minify-html/--no-minify-html", default=False, help="Minify HTML output.")
     @click.option("--minify-css/--no-minify-css", default=False, help="Minify CSS output.")

@@ -9,9 +9,15 @@
 {# Set default extension as the extension of src #}
 {% set ext = '.' + src.split('.')[-1] %}
 {% set src = src[:-(ext|length)] %}
+{% set mimedefault = "image/jpeg" %}
+{% if ext == '.png' %}
+  {% set mimedefault = "image/png" %}
+{% elif ext == '.gif' %}
+  {% set mimedefault = "image/gif" %}
+{% endif %}
 <picture>
   <source srcset="{{ src + '.webp' | safe }}, {{ src + '@2x.webp' | safe }} 2x" type="image/webp" />
-  <source srcset="{{ src + ext | safe }}, {{ src + '@2x' + ext | safe }} 2x" type="image/jpeg" />
+  <source srcset="{{ src + ext | safe }}, {{ src + '@2x' + ext | safe }} 2x" type="{{ mimedefault }}" />
 {% if lazy %}
   <img alt="${alt}" src="{{ src + ext}}" loading="lazy" class="lazy-img {{class}}"/>
 {% else %}
@@ -178,6 +184,30 @@
                     href="/assets/kulhanek2024nerfbaselines.bib" 
                     data-bib="{{ 'assets/kulhanek2024nerfbaselines.bib' | load_bib | safe }}" 
                     download="kulhanek2024nerfbaselines.bib"
+                    rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("/images/pd-watersplatting.gif", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://water-splatting.github.io/" class="text-link">WaterSplatting: Fast Underwater 3D Scene Reconstruction Using Gaussian Splatting</a></span>
+              <span class="publication-authors">Huapeng Li, Wenxuan Song, Tianao Xu, Alexandre Elsig, and <strong>Jonas Kulhanek</strong></span>
+              <span class="publication-venue"><i>3DV 2025</i></span>
+              {{citeCount(citeCounts["2025watersplatting"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2408.08206.pdf" rel="nofollow">paper</a></li>
+                <li><a href="https://water-splatting.github.io/">web</a></li>
+                <li><a 
+                    href="/assets/li2025watersplatting.bib" 
+                    data-bib="{{ 'assets/li2025watersplatting.bib' | load_bib | safe }}" 
+                    download="li2025watersplatting.bib"
                     rel="nofollow">bib</a></li>
               </ul>
             </div>
