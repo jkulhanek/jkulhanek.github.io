@@ -1,3 +1,5 @@
+import random
+import time
 import fnmatch
 import requests
 import re
@@ -55,13 +57,31 @@ def _setup_logging(verbose):
 @lru_cache(1)
 def _get_cite_counts():
     profile_url = "https://scholar.google.com/citations?user=YDNzfN4AAAAJ"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/122.0.0.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Referer': 'https://www.google.com/',
+        'DNT': '1',
+        'Connection': 'keep-alive',
+    }
+    session = requests.Session()
+    session.headers.update(headers)
+    session.get("https://scholar.google.com")  # seed cookies
 
     def get_publication_id(title, year):
         fw = re.match(r"^[a-z]+", title.lower()).group(0)
         return f'{year}{fw}'
 
-    response = requests.get(profile_url, headers={'User-Agent': 'Mozilla/5.0'})
-    response.raise_for_status()
+    for attempt in range(3):
+        response = session.get(profile_url)
+        if response.status_code == 200:
+            break
+        time.sleep(2 ** attempt + random.random())
+    else:
+        response.raise_for_status()
     parsed_html = BeautifulSoup(response.text, 'html.parser')
 
     records = parsed_html.body.findAll(attrs={'class':'gsc_a_tr'})
