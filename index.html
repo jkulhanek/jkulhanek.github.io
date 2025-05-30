@@ -146,6 +146,30 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
+                {{image("/images/pd-lodge.gif", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://lodge-gs.github.io/" class="text-link">LODGE: Level-of-Detail Large-Scale Gaussian Splatting with Efficient Rendering</a></span>
+              <span class="publication-authors"><strong>Jonas Kulhanek</strong>, Marie-Julie Rakotosaona, Fabian Manhardt, Christina Tsalicoglou, Michael Niemeyer, Torsten Sattler, Songyou Peng, and Federico Tombari</span>
+              <span class="publication-venue"><i>arXiv</i></span>
+              {{citeCount(citeCounts["2025lodge"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2505.23158.pdf" rel="nofollow">paper</a></li>
+                <li><a href="https://lodge-gs.github.io/">web</a></li>
+                <li><a 
+                    href="/assets/kulhanek2025lodge.bib" 
+                    data-bib="{{ 'assets/kulhanek2025lodge.bib' | load_bib | safe }}" 
+                    download="kulhanek2025lodge.bib"
+                    rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
                 {{image("/images/pd-wg.gif", lazy=true)}}
               </div>
             </div>
@@ -200,7 +224,7 @@
               <span class="title"><a href="https://water-splatting.github.io/" class="text-link">WaterSplatting: Fast Underwater 3D Scene Reconstruction Using Gaussian Splatting</a></span>
               <span class="publication-authors">Huapeng Li, Wenxuan Song, Tianao Xu, Alexandre Elsig, and <strong>Jonas Kulhanek</strong></span>
               <span class="publication-venue"><i>3DV 2025</i></span>
-              {{citeCount(citeCounts["2025watersplatting"])}}
+              {{citeCount(citeCounts["2024watersplatting"])}}
               <ul class="links">
                 <li><a href="https://arxiv.org/pdf/2408.08206.pdf" rel="nofollow">paper</a></li>
                 <li><a href="https://water-splatting.github.io/">web</a></li>
