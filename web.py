@@ -73,7 +73,8 @@ def _get_cite_counts():
 
     def get_publication_id(title, year):
         fw = re.match(r"^[a-z]+", title.lower()).group(0)
-        return f'{year}{fw}'
+        yield f'{year}{fw}'
+        yield f'{fw}'
 
     for attempt in range(3):
         response = session.get(profile_url)
@@ -91,7 +92,8 @@ def _get_cite_counts():
         title = a.find(attrs={'class': 'gsc_a_at'}).text
         year = a.find(attrs={'class': 'gsc_a_y'}).text
         if cite_count:
-            output[get_publication_id(title, year)] = int(cite_count)
+            for publication_id in get_publication_id(title, year):
+                output[publication_id] = int(cite_count)
     return output
 
 

@@ -59,7 +59,7 @@
           <h1><span class="first">Jonáš</span> Kulhánek</h1>
           <div class="print sub-header-main">
             <a href="https://jkulhanek.com/">https://jkulhanek.com</a><br>
-            <a href="mailto:jonas.kulhanek@live.com">jonas.kulhanek@live.com</a>
+            <a href="mailto:jonas.kulhanek@gmail.com">jonas.kulhanek@gmail.com</a>
           </div>
           <div class="subheader noprint">PhD student</div>
           <ul class="links noprint">
@@ -85,6 +85,18 @@
       <section id="news" class="c1">
         <h2>News</h2>
         <div class="container">
+          <div class="news-item">
+            <span class="date">09/2025</span>
+            <span class="title">
+                Our papers <a href="https://lodge-gs.github.io/">LODGE</a> and <a href="https://nerfbaselines.github.io/">NerfBaselines</a> got accepted to <a href="https://neurips.cc/Conferences/2025">NeurIPS 2025</a>
+            </span>
+          </div>
+          <div class="news-item">
+            <span class="date">05/2025</span>
+            <span class="title">
+              I finished my internship at Google Zurich in Federico Tombari's group
+            </span>
+          </div>
           <div class="news-item">
             <span class="date">09/2024</span>
             <span class="title">
@@ -146,13 +158,37 @@
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
               <div class="responsive-image">
+                {{image("/images/pd-nerfbaselines.png", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"><a href="https://nerfbaselines.github.io/" class="text-link">NerfBaselines: Consistent and Reproducible Evaluation of Novel View Synthesis Methods</a></span>
+              <span class="publication-authors"><strong>Jonas Kulhanek</strong> and Torsten Sattler</span>
+              <span class="publication-venue"><i>NeurIPS 2025</i></span>
+              {{citeCount(citeCounts["nerfbaselines"])}}
+              <ul class="links">
+                <li><a href="https://arxiv.org/pdf/2406.17345" rel="nofollow">paper</a></li>
+                <li><a href="https://nerfbaselines.github.io/">web</a></li>
+                <li><a 
+                    href="/assets/kulhanek2025nerfbaselines.bib" 
+                    data-bib="{{ 'assets/kulhanek2025nerfbaselines.bib' | load_bib | safe }}" 
+                    download="kulhanek2025nerfbaselines.bib"
+                    rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
                 {{image("/images/pd-lodge.gif", lazy=true)}}
               </div>
             </div>
             <div class="text">
               <span class="title"><a href="https://lodge-gs.github.io/" class="text-link">LODGE: Level-of-Detail Large-Scale Gaussian Splatting with Efficient Rendering</a></span>
               <span class="publication-authors"><strong>Jonas Kulhanek</strong>, Marie-Julie Rakotosaona, Fabian Manhardt, Christina Tsalicoglou, Michael Niemeyer, Torsten Sattler, Songyou Peng, and Federico Tombari</span>
-              <span class="publication-venue"><i>arXiv</i></span>
+              <span class="publication-venue"><i>NeurIPS 2025</i></span>
               {{citeCount(citeCounts["2025lodge"])}}
               <ul class="links">
                 <li><a href="https://arxiv.org/pdf/2505.23158.pdf" rel="nofollow">paper</a></li>
@@ -189,30 +225,6 @@
               </ul>
             </div>
           </div>
-
-          <div class="section-item image-item-container">
-            <div class="responsive-image-container">
-              <div class="responsive-image">
-                {{image("/images/pd-nerfbaselines.png", lazy=true)}}
-              </div>
-            </div>
-            <div class="text">
-              <span class="title"><a href="https://nerfbaselines.github.io/" class="text-link">NerfBaselines: Consistent and Reproducible Evaluation of Novel View Synthesis Methods</a></span>
-              <span class="publication-authors"><strong>Jonas Kulhanek</strong> and Torsten Sattler</span>
-              <span class="publication-venue"><i>arXiv</i></span>
-              {{citeCount(citeCounts["2024nerfbaselines"])}}
-              <ul class="links">
-                <li><a href="https://arxiv.org/pdf/2406.17345" rel="nofollow">paper</a></li>
-                <li><a href="https://nerfbaselines.github.io/">web</a></li>
-                <li><a 
-                    href="/assets/kulhanek2024nerfbaselines.bib" 
-                    data-bib="{{ 'assets/kulhanek2024nerfbaselines.bib' | load_bib | safe }}" 
-                    download="kulhanek2024nerfbaselines.bib"
-                    rel="nofollow">bib</a></li>
-              </ul>
-            </div>
-          </div>
-
 
           <div class="section-item image-item-container">
             <div class="responsive-image-container">
@@ -363,7 +375,7 @@
             <div class="text">
               <span class="title"><a class="text-link" href="https://jkulhanek.com/robot-visual-navigation">Visual Navigation in Real-World Indoor Environments Using End-to-End Deep Reinforcement Learning</a></span>
               <span class="publication-authors"><strong>Jonáš Kulhánek</strong>, Erik Derner, and Robert Babuška</span>
-              <span class="publication-venue"><i>RA-L 2021</i></span>
+              <span class="publication-venue"><i>ICRA 2021, RA-L</i></span>
               {{citeCount(citeCounts["2021visual"])}}
               <ul class="links">
                 <li><a href="https://arxiv.org/pdf/2010.10903" rel="nofollow">paper</a></li>
