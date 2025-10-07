@@ -357,8 +357,10 @@ section {
   font-style: normal;
 }
 
+@media (min-width: 768px) {
 #experience.expanded .c2-container {
   columns: 2;
+}
 }
 
 @media print {
